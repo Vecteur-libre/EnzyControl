@@ -1,0 +1,16 @@
+[2025-03-06 18:54:58,154][__main__][INFO] - Starting inference with 2 GPUs
+[2025-03-06 18:54:58,299][__main__][INFO] - Saving results to /data02/sc_data/enzymeframeflow/result20250306/inpainting_enzyme/2025-02-24_19-03-42/epoch=271-step=5440/EnzymeInpainting/run_2025-03-06_18-54-58
+[2025-03-06 18:54:58,321][__main__][INFO] - Saving inference config to /data02/sc_data/enzymeframeflow/result20250306/inpainting_enzyme/2025-02-24_19-03-42/epoch=271-step=5440/EnzymeInpainting/run_2025-03-06_18-54-58/config.yaml
+[2025-03-06 18:55:22,374][__main__][INFO] -   | Name  | Type      | Params
+------------------------------------
+0 | model | PeftModel | 21.4 M
+------------------------------------
+654 K     Trainable params
+20.7 M    Non-trainable params
+21.4 M    Total params
+85.537    Total estimated model params size (MB)
+[2025-03-06 18:55:22,568][__main__][INFO] - Using devices: [2, 3]
+[2025-03-06 18:55:22,568][__main__][INFO] - Evaluating EnzymeInpainting
+[2025-03-06 18:55:50,990][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 0
+[2025-03-06 18:55:50,990][torch.distributed.distributed_c10d][INFO] - Rank 0: Completed store-based barrier for key:store_based_barrier_key:1 with 2 nodes.
+[2025-03-07 18:54:35,032][__main__][INFO] - Finished in 86376.88s

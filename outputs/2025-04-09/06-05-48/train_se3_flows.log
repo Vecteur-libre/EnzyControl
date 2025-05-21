@@ -1,0 +1,4 @@
+[2025-04-09 06:05:51,564][data.datasets_enzyme][INFO] - Training: 3551 examples
+[2025-04-09 06:05:54,004][data.datasets_enzyme][INFO] - Validation: 190 examples
+[2025-04-09 06:05:54,071][__main__][INFO] - Training with devices: []
+[2025-04-09 06:06:15,573][__main__][INFO] - Checkpoints saved to ckpt/se3-fm/inpainting_enzyme/2025-04-09_06-05-48

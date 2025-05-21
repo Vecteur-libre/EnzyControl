@@ -1,0 +1,7 @@
+[2025-02-19 05:38:14,120][data.datasets_enzyme][INFO] - Training: 3551 examples
+[2025-02-19 05:38:16,491][data.datasets_enzyme][INFO] - Validation: 190 examples
+[2025-02-19 05:38:16,550][__main__][INFO] - Training with devices: [2]
+[2025-02-19 05:38:16,967][Uni-Mol Tools][INFO] - Loading pretrained weights from /opt/anaconda3_2022/envs/fm/lib/python3.10/site-packages/unimol_tools/weights/mol_pre_all_h_220816.pt
+[2025-02-19 05:38:31,249][__main__][INFO] - Checkpoints saved to ckpt/se3-fm/inpainting_enzyme/2025-02-19_05-38-11
+[2025-02-19 05:38:31,438][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 0
+[2025-02-19 05:38:31,438][torch.distributed.distributed_c10d][INFO] - Rank 0: Completed store-based barrier for key:store_based_barrier_key:1 with 1 nodes.

@@ -1,0 +1,242 @@
+data:
+  task: inpainting
+  dataset: enzyme
+  loader:
+    num_workers: 1
+    prefetch_factor: 10
+  sampler:
+    max_batch_size: 80
+    max_num_res_squared: 400000
+interpolant:
+  min_t: 0.01
+  twisting:
+    use: false
+  rots:
+    corrupt: true
+    sample_schedule: exp
+    exp_rate: 10
+  trans:
+    corrupt: true
+    batch_ot: true
+    sample_schedule: linear
+    sample_temp: 1.0
+    vpsde_bmin: 0.1
+    vpsde_bmax: 20.0
+    potential: null
+    potential_t_scaling: false
+    rog:
+      weight: 10.0
+      cutoff: 5.0
+  sampling:
+    num_timesteps: 100
+    do_sde: false
+  self_condition: ${model.edge_features.self_condition}
+experiment:
+  training_mode: lora
+  from_scratch: false
+  debug: false
+  seed: 123
+  num_devices: 1
+  warm_start: null
+  warm_start_cfg_override: true
+  training:
+    mask_plddt: true
+    bb_atom_scale: 0.1
+    trans_scale: 0.1
+    translation_loss_weight: 2.0
+    t_normalize_clip: 0.9
+    rotation_loss_weights: 1.0
+    aux_loss_weight: 0.0
+    aux_loss_use_bb_loss: true
+    aux_loss_use_pair_loss: true
+    aux_loss_t_pass: 0.5
+  wandb:
+    name: ${data.task}_${data.dataset}
+    project: se3-fm
+  optimizer:
+    lr: 0.0001
+  trainer:
+    overfit_batches: 0
+    min_epochs: 1
+    max_epochs: 1000
+    accelerator: gpu
+    log_every_n_steps: 1
+    deterministic: false
+    strategy: ddp
+    check_val_every_n_epoch: 200
+    accumulate_grad_batches: 2
+  checkpointer:
+    dirpath: ckpt/${experiment.wandb.project}/${experiment.wandb.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
+    save_last: true
+    save_top_k: 3
+    monitor: valid/non_coil_percent
+    mode: max
+  inference_dir: null
+shared:
+  seed: 123
+  max_cache_size: 100000
+  samples_per_eval_length: 5
+  num_eval_lengths: 8
+  max_eval_length: 256
+  min_motif_percent: 0.1
+  max_motif_percent: 0.5
+  splite_rate: 0.05
+scope_dataset:
+  seed: ${shared.seed}
+  csv_path: ./metadata/scope_metadata.csv
+  max_cache_size: ${shared.max_cache_size}
+  cache_num_res: 0
+  add_plddt_mask: false
+  max_eval_length: ${shared.max_eval_length}
+  inpainting_percent: 1.0
+  samples_per_eval_length: ${shared.samples_per_eval_length}
+  num_eval_lengths: ${shared.num_eval_lengths}
+  filter:
+    max_num_res: 128
+    min_num_res: 60
+  min_motif_percent: ${shared.min_motif_percent}
+  max_motif_percent: ${shared.max_motif_percent}
+pdb_dataset:
+  seed: ${shared.seed}
+  csv_path: ./metadata/pdb_metadata.csv
+  cluster_path: ./metadata/pdb.clusters
+  max_cache_size: ${shared.max_cache_size}
+  cache_num_res: 0
+  inpainting_percent: 1.0
+  add_plddt_mask: false
+  max_eval_length: ${shared.max_eval_length}
+  samples_per_eval_length: ${shared.samples_per_eval_length}
+  num_eval_lengths: ${shared.num_eval_lengths}
+  filter:
+    max_num_res: 512
+    min_num_res: 60
+    max_coil_percent: 0.5
+    rog_quantile: 0.96
+    oligomeric:
+    - monomeric
+    num_chains:
+    - 1
+  min_motif_percent: ${shared.min_motif_percent}
+  max_motif_percent: ${shared.max_motif_percent}
+enzyme_dataset:
+  seed: ${shared.seed}
+  csv_path: ./metadata/metadata_with_sequence.csv
+  max_cache_size: ${shared.max_cache_size}
+  cache_num_res: 0
+  inpainting_percent: 1.0
+  trainset_dir: ./metadata/trainset.csv
+  testset_dir: ./metadata/testset.csv
+  add_plddt_mask: false
+  max_eval_length: ${shared.max_eval_length}
+  samples_per_eval_length: ${shared.samples_per_eval_length}
+  num_eval_lengths: ${shared.num_eval_lengths}
+  num_samples: 50
+  filter:
+    max_num_res: 512
+    min_num_res: 60
+    max_coil_percent: 0.5
+    rog_quantile: 0.96
+    num_chains:
+    - 1
+  min_motif_percent: ${shared.min_motif_percent}
+  max_motif_percent: ${shared.max_motif_percent}
+model:
+  weights: weights/pdb_amortization/frozen.ckpt
+  lora_r: 16
+  lora_alpha: 32
+  lora_target_modules:
+  - linear_q
+  - linear_kv
+  - linear_q_points
+  - linear_kv_points
+  - linear1
+  - linear2
+  - node_embedder.Linear1
+  - node_embedder.Linear2
+  - W_Q
+  - W_K
+  - W_V
+  - post_tfmr
+  lora_dropout: 0.0
+  lora_bias: none
+  node_embed_size: 256
+  edge_embed_size: 128
+  symmetric: false
+  node_features:
+    c_s: ${model.node_embed_size}
+    c_pos_emb: 128
+    c_timestep_emb: 128
+    max_num_res: 2000
+    timestep_int: 1000
+    embed_chain: false
+  edge_features:
+    single_bias_transition_n: 2
+    c_s: ${model.node_embed_size}
+    c_p: ${model.edge_embed_size}
+    relpos_k: 64
+    feat_dim: 64
+    num_bins: 22
+    self_condition: true
+    embed_chain: false
+    embed_diffuse_mask: true
+  ipa:
+    c_s: ${model.node_embed_size}
+    c_z: ${model.edge_embed_size}
+    c_hidden: 128
+    no_heads: 8
+    no_qk_points: 8
+    no_v_points: 12
+    seq_tfmr_num_heads: 4
+    seq_tfmr_num_layers: 2
+    num_blocks: 6
+inference:
+  predict_dir: /data02/sc_data/enzymeframeflow/result20250411
+  inference_subdir: run_${now:%Y-%m-%d}_${now:%H-%M-%S}
+  name: run_${now:%Y-%m-%d}_${now:%H-%M}
+  seed: 123
+  task: EnzymeInpainting
+  output_dir: /data02/sc_data/enzymeframeflow/result20250411/
+  ckpt_path: /home/user12/protein-frame-flow/ckpt/se3-fm/inpainting_enzyme/2025-04-10_23-58-31/epoch=999-step=20000.ckpt
+  use_gpu: true
+  num_gpus: 2
+  interpolant:
+    min_t: 0.01
+    rots:
+      corrupt: true
+      sample_schedule: exp
+      exp_rate: 10
+    trans:
+      corrupt: true
+      sample_schedule: linear
+    sampling:
+      num_timesteps: 100
+    self_condition: true
+    twisting:
+      use: false
+      t_min: 0.2
+      scale: 1.0
+      r_t: 1
+      potential_trans: true
+      potential_rot: true
+      update_trans: true
+      update_rot: true
+      max_rot_grad_norm: 1000
+      align: true
+      motif_loc: false
+      max_offsets: 1000
+      num_rots: 1
+      scale_rots: 0.0
+      obs_noise: 0.0
+  samples:
+    samples_per_length: 10
+    min_length: 60
+    max_length: 256
+    length_step: 1
+    length_subset: null
+    overwrite: false
+    csv_path: metadata/testset.csv
+    samples_per_target: 3
+    num_batch: 1
+    target_subset: null
+samples:
+  csv_path: metadata/testset.csv
