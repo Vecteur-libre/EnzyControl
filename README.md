@@ -31,7 +31,7 @@ Our dataset is available at [this](https://zenodo.org/records/15462173). You can
 
 ## Inference
 
-To run sampling, we specify the settings in `config/inference_enzyme.yaml`.
+To run sampling, we specify the settings in `config/inference_enzyme.yaml`. You need download our [checkpoint](https://drive.google.com/file/d/1loybOsNeAHSXVB4jCt8UqLJkYq_yLdME/view?usp=drive_link), and put it in the folder `"/weights/"`, then run the following command.
 
 ```python
 # Single GPU
@@ -49,7 +49,7 @@ python -W ignore experiments/inference_se3_flows.py -cn inference_enzyme inferen
 
 All training flags are in `configs/base.yaml`. Below is explanation-by-example of the main flags to change. Note you can combine multiple flags in the command.
 
-If you want to retrain our model, you need to download our dataset, preprocess it into the same format as the example data, and run the following command.
+If you want to retrain our model, you need to download our [dataset](https://zenodo.org/records/15462173), preprocess it into the same format as the example data, and run the following command. And you also need to download the pretrained model from [here](https://drive.google.com/file/d/1wUdzM9Yn1M1PIAuxPwGpsbNk8FlQMfcQ/view?usp=drive_link), putting it in the folder `"/weights/"`
 
 ```python
 # Train on EnzyBind
@@ -61,5 +61,4 @@ python -W ignore experiments/train_se3_flows.py data.dataset=enzyme data.task=in
 # Training with more GPUs
 python -W ignore experiments/train_se3_flows.py data.dataset=enzyme data.task=inpainting experiment.num_devices=4
 ```
-
 
