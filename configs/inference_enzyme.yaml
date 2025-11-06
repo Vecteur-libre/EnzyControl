@@ -1,0 +1,11 @@
+# enzyme sampling
+defaults:
+  - _inference
+  - _self_
+
+inference:
+  task: EnzymeInpainting
+  ckpt_path: weights/checkpoint.ckpt
+
+samples:
+  csv_path: metadata/demo.csv

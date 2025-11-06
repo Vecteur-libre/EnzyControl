@@ -1,0 +1,42 @@
+shared:
+  seed: 123
+  max_cache_size: 100_000
+  samples_per_eval_length: 5
+  num_eval_lengths : 8
+  max_eval_length: 256
+
+  # Scaffolding parameters
+  min_motif_percent: 0.1
+  max_motif_percent: 0.5
+
+  splite_rate: 0.05
+
+
+enzyme_dataset:
+  seed: ${shared.seed}
+  csv_path: ./metadata/metadata_with_sequence.csv
+  max_cache_size: ${shared.max_cache_size}
+  cache_num_res: 0
+  inpainting_percent: 1.0
+  trainset_dir: "./metadata/trainset.csv"
+  testset_dir: "./metadata/testset.csv"
+  add_plddt_mask: False
+  max_eval_length: ${shared.max_eval_length}
+
+  # Eval parameters
+  samples_per_eval_length: ${shared.samples_per_eval_length}
+  num_eval_lengths: ${shared.num_eval_lengths}
+  num_samples: 50
+
+  # Filtering
+  filter:
+    max_num_res: 512
+    min_num_res: 60
+    max_coil_percent: 0.5
+    rog_quantile: 0.96
+    # oligomeric: ['monomeric']
+    num_chains: [1]
+
+  # Scaffolding
+  min_motif_percent: ${shared.min_motif_percent} 
+  max_motif_percent: ${shared.max_motif_percent}

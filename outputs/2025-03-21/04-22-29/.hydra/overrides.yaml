@@ -1,0 +1,3 @@
+- data.dataset=enzyme
+- data.task=inpating
+- experiment.num_devices=2

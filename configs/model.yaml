@@ -1,0 +1,37 @@
+model:
+  weights: "weights/frozen.ckpt"
+  lora_r: 16
+  lora_alpha: 32
+  lora_target_modules: ["linear_q","linear_kv","linear_q_points","linear_kv_points","linear1","linear2","node_embedder.Linear1","node_embedder.Linear2", "W_Q", "W_K", "W_V", "post_tfmr"]
+  lora_dropout: 0.0
+  lora_bias: "none"
+  node_embed_size: 256
+  edge_embed_size: 128
+  symmetric: False
+  node_features:
+    c_s: ${model.node_embed_size}
+    c_pos_emb: 128
+    c_timestep_emb: 128
+    max_num_res: 2000
+    timestep_int: 1000
+    embed_chain: False
+  edge_features:
+    single_bias_transition_n: 2
+    c_s: ${model.node_embed_size}
+    c_p: ${model.edge_embed_size}
+    relpos_k: 64
+    feat_dim: 64
+    num_bins: 22
+    self_condition: True
+    embed_chain: False
+    embed_diffuse_mask: True
+  ipa:
+    c_s: ${model.node_embed_size}
+    c_z: ${model.edge_embed_size}
+    c_hidden: 128
+    no_heads: 8
+    no_qk_points: 8
+    no_v_points: 12
+    seq_tfmr_num_heads: 4
+    seq_tfmr_num_layers: 2
+    num_blocks: 6

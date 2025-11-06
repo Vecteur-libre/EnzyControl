@@ -1,0 +1,93 @@
+defaults:
+  - _self_
+  - datasets
+  - model
+
+data:
+
+  task: inpainting
+
+  dataset: enzyme
+
+  loader:
+    num_workers: 1
+    prefetch_factor: 10
+
+  sampler:
+    # Setting for 48GB GPUs
+    max_batch_size: 80
+    max_num_res_squared: 400_000
+
+interpolant:
+  min_t: 1e-2
+
+  twisting:
+    use: False
+
+  rots:
+    corrupt: True
+    sample_schedule: exp
+    exp_rate: 10
+
+  trans:
+    corrupt: True
+    batch_ot: True
+    sample_schedule: linear
+    sample_temp: 1.0
+    vpsde_bmin: 0.1
+    vpsde_bmax: 20.0
+    potential: null
+    potential_t_scaling: False
+    rog:
+      weight: 10.0
+      cutoff: 5.0
+
+  sampling:
+    num_timesteps: 100
+    do_sde: False
+
+  self_condition: ${model.edge_features.self_condition}
+
+experiment:
+  training_mode: "lora"
+  # training_mode: "full"
+  from_scratch: False
+  debug: False
+  seed: 123
+  num_devices: 1
+  warm_start: null
+  warm_start_cfg_override: True
+  training:
+    mask_plddt: True
+    bb_atom_scale: 0.1
+    trans_scale: 0.1
+    translation_loss_weight: 2.0
+    t_normalize_clip: 0.9
+    rotation_loss_weights: 1.0
+    aux_loss_weight: 0.0
+    aux_loss_use_bb_loss: True
+    aux_loss_use_pair_loss: True
+    aux_loss_t_pass: 0.5
+  wandb:
+    name: ${data.task}_${data.dataset}
+    project: se3-fm
+  optimizer:
+    lr: 0.0001
+  trainer:
+    overfit_batches: 0
+    min_epochs: 1 # prevents early stopping
+    max_epochs: 1000
+    accelerator: gpu
+    log_every_n_steps: 1
+    deterministic: False
+    strategy: ddp
+    check_val_every_n_epoch: 200
+    accumulate_grad_batches: 2
+  checkpointer:
+    dirpath: ckpt/${experiment.wandb.project}/${experiment.wandb.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
+    save_last: True
+    save_top_k: 3
+    monitor: valid/non_coil_percent
+    mode: max
+  # Keep this null. Will be populated at runtime.
+  inference_dir: null

@@ -1,0 +1,10 @@
+[2025-02-19 05:33:28,858][data.datasets_enzyme][INFO] - Training: 3551 examples
+[2025-02-19 05:33:30,795][data.datasets_enzyme][INFO] - Validation: 190 examples
+[2025-02-19 05:33:30,853][__main__][INFO] - Training with devices: [3]
+[2025-02-19 05:33:31,254][Uni-Mol Tools][INFO] - Loading pretrained weights from /opt/anaconda3_2022/envs/fm/lib/python3.10/site-packages/unimol_tools/weights/mol_pre_all_h_220816.pt
+[2025-02-19 05:33:49,502][__main__][INFO] - Checkpoints saved to ckpt/se3-fm/inpainting_enzyme/2025-02-19_05-33-26
+[2025-02-19 05:33:49,706][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 0
+[2025-02-19 05:33:49,706][torch.distributed.distributed_c10d][INFO] - Rank 0: Completed store-based barrier for key:store_based_barrier_key:1 with 1 nodes.
+[2025-02-19 05:33:51,412][Uni-Mol Tools][INFO] - Start generating conformers...
+[2025-02-19 05:33:52,110][Uni-Mol Tools][INFO] - Succeeded in generating conformers for 100.00% of molecules.
+[2025-02-19 05:33:52,111][Uni-Mol Tools][INFO] - Succeeded in generating 3d conformers for 100.00% of molecules.
