@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # EnzyControl
 
 EnzyControl is a method that enables functional and substrate-specific control in enzyme backbone generation. This repo is built based on [protein-frame-flow](https://github.com/microsoft/protein-frame-flow).
@@ -32,6 +31,7 @@ Our dataset is available at [this](https://zenodo.org/records/15462173). You can
 
 ## Inference
 
+You can download our ckpt from [here](https://drive.google.com/drive/folders/1wXGYaiUNVbP4iOV4hHOf_7JrTpasmwHT?usp=drive_link), and put it in the folder `"/weights/"`
 To run sampling, we specify the settings in `config/inference_enzyme.yaml`.
 
 ```python
