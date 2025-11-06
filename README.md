@@ -62,3 +62,16 @@ python -W ignore experiments/train_se3_flows.py data.dataset=enzyme data.task=in
 # Training with more GPUs
 python -W ignore experiments/train_se3_flows.py data.dataset=enzyme data.task=inpainting experiment.num_devices=4
 ```
+
+## Citation
+
+If you use our codes or checkpoints, please cite your paper:
+
+```
+@article{song2025enzycontrol,
+  title={EnzyControl: Adding Functional and Substrate-Specific Control for Enzyme Backbone Generation},
+  author={Song, Chao and Liu, Zhiyuan and Huang, Han and Wang, Liang and Wang, Qiong and Shi, Jianyu and Yu, Hui and Zhou, Yihang and Zhang, Yang},
+  journal={arXiv preprint arXiv:2510.25132},
+  year={2025}
+}
+```
