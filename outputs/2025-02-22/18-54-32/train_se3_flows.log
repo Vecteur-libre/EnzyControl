@@ -1,9 +1,0 @@
-[2025-02-22 18:54:35,146][data.datasets_enzyme][INFO] - Training: 3551 examples
-[2025-02-22 18:54:37,745][data.datasets_enzyme][INFO] - Validation: 190 examples
-[2025-02-22 18:54:37,807][__main__][INFO] - Training with devices: [3, 2]
-[2025-02-22 18:54:52,772][__main__][INFO] - Checkpoints saved to ckpt/se3-fm/inpainting_enzyme/2025-02-22_18-54-32
-[2025-02-22 18:55:08,433][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 0
-[2025-02-22 18:55:08,433][torch.distributed.distributed_c10d][INFO] - Rank 0: Completed store-based barrier for key:store_based_barrier_key:1 with 2 nodes.
-[2025-02-22 18:56:10,228][data.protein_dataloader][INFO] - Created dataloader rank 1 out of 2
-[2025-02-22 18:56:10,908][data.so3_utils][INFO] - Data loaded from .cache/cache_igso3_s0.100-1.500-1000_l1000_o1000-3.npz
-[2025-02-22 18:56:11,777][torch.nn.parallel.distributed][INFO] - Reducer buckets have been rebuilt in this iteration.

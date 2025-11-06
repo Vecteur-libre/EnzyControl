@@ -1,7 +1,0 @@
-[2025-02-22 18:58:38,708][data.datasets_enzyme][INFO] - Training: 3551 examples
-[2025-02-22 18:58:40,898][data.datasets_enzyme][INFO] - Validation: 190 examples
-[2025-02-22 18:58:47,049][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 1
-[2025-02-22 18:58:47,060][torch.distributed.distributed_c10d][INFO] - Rank 1: Completed store-based barrier for key:store_based_barrier_key:1 with 2 nodes.
-[2025-02-22 18:59:36,661][data.protein_dataloader][INFO] - Created dataloader rank 2 out of 2
-[2025-02-22 18:59:36,982][data.so3_utils][INFO] - Data loaded from .cache/cache_igso3_s0.100-1.500-1000_l1000_o1000-3.npz
-[2025-02-22 18:59:37,820][torch.nn.parallel.distributed][INFO] - Reducer buckets have been rebuilt in this iteration.

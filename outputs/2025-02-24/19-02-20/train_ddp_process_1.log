@@ -1,4 +1,0 @@
-[2025-02-24 19:02:46,591][data.datasets_enzyme][INFO] - Training: 3551 examples
-[2025-02-24 19:02:48,700][data.datasets_enzyme][INFO] - Validation: 190 examples
-[2025-02-24 19:02:53,408][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 1
-[2025-02-24 19:02:53,419][torch.distributed.distributed_c10d][INFO] - Rank 1: Completed store-based barrier for key:store_based_barrier_key:1 with 2 nodes.

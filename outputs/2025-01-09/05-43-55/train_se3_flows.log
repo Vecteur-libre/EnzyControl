@@ -1,6 +1,0 @@
-[2025-01-09 05:43:57,841][data.datasets_enzyme][INFO] - Training: 3494 examples
-[2025-01-09 05:43:59,911][data.datasets_enzyme][INFO] - Validation: 140 examples
-[2025-01-09 05:43:59,977][__main__][INFO] - Training with devices: [0]
-[2025-01-09 05:44:14,244][__main__][INFO] - Checkpoints saved to ckpt/se3-fm/inpainting_enzyme/2025-01-09_05-43-55
-[2025-01-09 05:44:14,575][torch.distributed.distributed_c10d][INFO] - Added key: store_based_barrier_key:1 to store for rank: 0
-[2025-01-09 05:44:14,575][torch.distributed.distributed_c10d][INFO] - Rank 0: Completed store-based barrier for key:store_based_barrier_key:1 with 1 nodes.

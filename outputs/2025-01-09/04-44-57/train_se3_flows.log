@@ -1,3 +1,0 @@
-[2025-01-09 04:44:58,580][data.datasets_enzyme][INFO] - Training: 3739 examples
-[2025-01-09 04:44:59,292][data.datasets_enzyme][INFO] - Validation: 2 examples
-[2025-01-09 04:44:59,358][__main__][INFO] - Training with devices: [0, 1]

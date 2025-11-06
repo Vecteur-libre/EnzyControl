@@ -1,3 +1,0 @@
-[2025-01-14 21:00:14,862][__main__][INFO] - Starting inference with 2 GPUs
-[2025-01-14 21:00:14,938][__main__][INFO] - Saving results to /data02/sc_data/enzymeframeflow/result20250114/inpainting_enzyme/2025-01-09_05-54-49/epoch=723-step=7240/EnzymeInpainting/run_2025-01-14_21-00-14
-[2025-01-14 21:00:14,953][__main__][INFO] - Saving inference config to /data02/sc_data/enzymeframeflow/result20250114/inpainting_enzyme/2025-01-09_05-54-49/epoch=723-step=7240/EnzymeInpainting/run_2025-01-14_21-00-14/config.yaml
