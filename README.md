@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # EnzyControl
 
 EnzyControl is a method that enables functional and substrate-specific control in enzyme backbone generation. This repo is built based on [protein-frame-flow](https://github.com/microsoft/protein-frame-flow).
@@ -61,5 +62,3 @@ python -W ignore experiments/train_se3_flows.py data.dataset=enzyme data.task=in
 # Training with more GPUs
 python -W ignore experiments/train_se3_flows.py data.dataset=enzyme data.task=inpainting experiment.num_devices=4
 ```
-
-
