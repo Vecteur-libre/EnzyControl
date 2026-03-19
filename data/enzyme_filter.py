@@ -30,8 +30,6 @@ parser.add_argument(
 parser.add_argument(
     "--max_res", help="Maximum number of residues", type=int, default=512
 )
-parser.add_argument("--max_coil_percent", type=int, default=0.5)
-parser.add_argument("--rog_quantile", type=int, default=0.96)
 
 
 def _rog_filter(df, quantile):
@@ -73,12 +71,6 @@ def filter_metadata(args, raw_csv):
         (data_csv.modeled_seq_len >= args.min_res)
         & (data_csv.modeled_seq_len <= args.max_res)
     ]
-
-    ## max coil_percent:0.5
-    data_csv = data_csv[data_csv.coil_percent <= args.max_coil_percent]
-
-    ## rog_quantile: 0.96
-    data_csv = _rog_filter(data_csv, args.rog_quantile)
 
     ## drop rows that lack EC_level3
     data_csv = data_csv.dropna(subset=["EC_level4"])

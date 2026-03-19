@@ -32,8 +32,6 @@ enzyme_dataset:
   filter:
     max_num_res: 512
     min_num_res: 60
-    max_coil_percent: 0.5
-    rog_quantile: 0.96
     # oligomeric: ['monomeric']
     num_chains: [1]
 

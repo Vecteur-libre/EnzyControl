@@ -48,14 +48,6 @@ def _length_filter(data_csv, min_res, max_res):
     ]
 
 
-def _plddt_percent_filter(data_csv, min_plddt_percent):
-    return data_csv[data_csv.num_confident_plddt > min_plddt_percent]
-
-
-def _max_coil_filter(data_csv, max_coil_percent):
-    return data_csv[data_csv.coil_percent <= max_coil_percent]
-
-
 def _process_csv_row(processed_file_path, f_sites):
     
     
@@ -619,12 +611,6 @@ class EnzymeDataset(BaseDataset):
         data_csv = _length_filter(
             data_csv, filter_cfg.min_num_res, filter_cfg.max_num_res
         )
-
-        ## max coil_percent: 0.5
-        data_csv = _max_coil_filter(data_csv, filter_cfg.max_coil_percent)
-
-        ## rog_quantile: 0.96
-        data_csv = _rog_filter(data_csv, filter_cfg.rog_quantile)
 
         ## delete rows that lack EC_level4
         data_csv = data_csv.dropna(subset=["EC_level4"])
